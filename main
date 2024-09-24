@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Text Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p {
+            font-size: 24px;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        const texts = [
+            "@me painting in a sunlit studio, surrounded by canvases and art supplies.",
+"@me trying on a bridal gown, looking excited in a boutique.",
+"@me playing with a cute puppy in a park, wearing casual attire.",
+"@me exploring a farmers market, picking out fresh flowers and produce.",
+"@me posing with friends at a music festival, wearing fun, colorful outfits.",
+"@me at a pottery class, shaping clay on a wheel with a focused expression.",
+"@me making smoothies in a bright kitchen, surrounded by fresh fruit.",
+"@me hiking a scenic trail, taking a break to enjoy the view.",
+"@me cuddled up with a cat on a rainy day, wearing cozy pajamas.",
+"@me enjoying a sunset picnic on the beach, with a blanket and snacks.",
+"@me dressed as a character for a costume party, showcasing creativity.",
+"@me volunteering at an animal shelter, surrounded by adorable pets.",
+"@me on a road trip, posing in front of a scenic landmark with friends.",
+"@me in a vibrant garden, surrounded by blooming flowers and greenery.",
+"@me at a cooking class, excitedly preparing a dish with a chef.",
+"@me practicing dance in a studio, wearing a colorful leotard.",
+"@me sitting by a campfire with friends, roasting marshmallows.",
+"@me at an outdoor festival, enjoying street food and live music.",
+"@me posing with a handmade craft in a cozy workshop.",
+"@me enjoying a leisurely bike ride through a picturesque neighborhood.",
+"@me at a vintage market, browsing for unique finds and treasures.",
+"@me dressed in a stylish trench coat, strolling through autumn leaves.",
+"@me having a spa day at home, surrounded by candles and skincare products.",
+"@me taking a stroll along a scenic riverwalk, wearing a chic outfit.",
+"@me in a cozy sweater, baking cookies in a well-decorated kitchen.",
+"@me exploring a historical site, fascinated by the architecture.",
+"@me practicing mindfulness in a tranquil garden, sitting cross-legged.",
+"@me at a rooftop garden, enjoying a drink while overlooking the city.",
+"@me participating in a charity run, wearing a bright t-shirt and sneakers.",
+"@me at a flower shop, picking out a bouquet for a friend.",
+"@me dressed in a cozy cardigan, reading a book by the fireplace.",
+"@me enjoying a day at the amusement park, holding cotton candy.",
+"@me playing board games with friends, laughing and having fun.",
+"@me on a scenic train ride, looking out the window at beautiful landscapes.",
+"@me making a vision board, surrounded by magazines and scissors.",
+"@me at a local fair, trying out fun rides and games.",
+"@me visiting an aquarium, fascinated by colorful fish and sea creatures.",
+"@me relaxing in a hammock, enjoying a good book under the sun.",
+"@me hosting a movie night with friends, complete with popcorn and snacks.",
+"@me at a pottery wheel, creating a unique piece of art.",
+"@me exploring a charming bookstore, with shelves full of novels.",
+"@me on a hiking trip, capturing a stunning mountain view.",
+"@me at a music concert, singing along with the crowd.",
+"@me enjoying a spa day, getting a manicure and pedicure.",
+"@me in a cozy café, writing in a journal while sipping coffee.",
+"@me at a food truck festival, sampling various delicious dishes.",
+"@me dressed in a stylish summer outfit, walking through a botanical garden.",
+"@me posing with friends at a fun photo booth, making silly faces.",
+"@me taking a scenic boat ride, enjoying the calm waters.",
+"@me at a rooftop yoga class, surrounded by city views.",
+"@me crafting homemade candles in a colorful workshop.",
+"@me enjoying a winter day, building a snowman with friends.",
+"@me at a flower festival, surrounded by vibrant blooms.",
+"@me taking a painting class, working on a colorful canvas.",
+"@me hosting a brunch for friends, with delicious food and drinks.",
+"@me in a stylish jumpsuit, attending an art gallery opening.",
+"@me walking through a historical district, admiring the architecture.",
+"@me enjoying a quiet moment at a lakeside retreat.",
+"@me at a wine tasting, holding a glass and savoring the flavors.",
+"@me exploring a new city, map in hand and looking excited.",
+"@me taking part in a dance class, learning new moves.",
+"@me enjoying a leisurely day at a botanical garden, surrounded by greenery.",
+"@me dressed up for a themed party, showcasing creativity and fun.",
+"@me at a cozy pub, enjoying a drink with friends.",
+"@me taking a scenic walk through a national park, capturing nature's beauty.",
+"@me experimenting with new makeup looks in a bright bathroom.",
+"@me volunteering at a community garden, planting flowers and vegetables.",
+"@me enjoying a gourmet meal at a fancy restaurant, dressed to impress.",
+"@me taking a scenic road trip, stopping to take pictures along the way.",
+"@me in a cozy cabin, enjoying a snowy winter day with hot cocoa.",
+"@me exploring a new hiking trail, stopping to take pictures of the view.",
+"@me at a local farmers market, enjoying fresh produce and flowers.",
+"@me enjoying a lazy Sunday at home, wrapped in a blanket with a good book.",
+"@me visiting a petting zoo, having fun with the animals.",
+"@me practicing calligraphy in a cozy nook, surrounded by supplies.",
+"@me enjoying a sunny day at the beach, with a colorful beach towel.",
+"@me dressed in warm layers, enjoying a crisp fall day outdoors.",
+"@me at a rooftop bar, sipping a cocktail as the sun sets.",
+"@me sitting on a park bench, enjoying an ice cream cone on a sunny day.",
+"@me participating in a charity event, smiling and having fun.",
+"@me in a vintage dress, exploring an antique shop filled with treasures.",
+"@me having fun at a trampoline park, jumping around with friends.",
+"@me exploring a new hiking trail, stopping to take pictures of the view.",
+"@me at a cozy coffee shop, writing a story with a warm drink.",
+"@me dressing up for a masquerade ball, showcasing an elegant mask.",
+"@me participating in a cooking competition, surrounded by fellow chefs.",
+"@me visiting a sunflower field, surrounded by vibrant yellow blooms.",
+"@me enjoying a day out at a theme park, full of excitement and laughter.",
+"@me at a pottery studio, creating unique pieces of art.",
+"@me wearing a chic scarf, strolling through a winter wonderland.",
+"@me enjoying a scenic drive along the coast, with the ocean breeze.",
+"@me practicing meditation in a peaceful garden, surrounded by nature.",
+"@me dressed up for a formal dinner, looking elegant at the table.",
+"@me having a fun day out at an escape room with friends.",
+"@me at a local carnival, enjoying games and rides with excitement.",
+"@me sitting by a lake, enjoying a peaceful moment with nature.",
+"@me in a vintage-inspired outfit, attending a retro-themed event.",
+"@me exploring an art exhibit, captivated by the creativity around.",
+"@me taking a stroll through a botanical garden, surrounded by colorful flowers.",
+"@me at a craft fair, showcasing handmade creations and enjoying the atmosphere.",
+"@me enjoying a cozy morning with a cup of coffee in a stylish kitchen.",
+"@me lying on the beach in a chic bikini with waves crashing in the background.",
+"@me lounging on a plush sofa in a minimalistic living room, wearing a cute casual outfit.",
+"@me getting ready for a glamorous night out, wearing a sparkling dress.",
+"@me posing confidently in a gym, lifting weights in tight workout clothes.",
+"@me in lingerie, sitting on the edge of a luxurious bed with silky sheets.",
+"@me working on a laptop at a trendy cafe, surrounded by books and coffee.",
+"@me enjoying a luxurious bath with candles and bubbles, surrounded by rose petals.",
+"@me walking through the city streets in high heels and a designer handbag.",
+"@me wrapped in a soft blanket, sipping tea by the window during a rainy day.",
+"@me in a satin robe, applying makeup at a vanity table with elegant lighting.",
+"@me relaxing by the pool in a stylish swimsuit, with sunglasses on.",
+"@me doing yoga in a serene outdoor park, wearing vibrant yoga pants.",
+"@me holding a shopping bag from a luxury brand, walking out of a high-end store.",
+"@me sitting in a fancy restaurant, with a glass of wine and an elegant outfit.",
+"@me dancing in a glittery outfit under club lights, enjoying the nightlife.",
+"@me posing in a modern kitchen, wearing an apron while baking cookies.",
+"@me lying on a velvet couch in lingerie, surrounded by soft pillows.",
+"@me cycling through a beautiful park in casual clothes, enjoying the sunshine.",
+"@me sitting in front of a makeup mirror, with various beauty products on the table.",
+"@me relaxing in a luxurious bubble bath, surrounded by candles.",
+"@me trying on different outfits in a walk-in closet filled with designer clothes.",
+"@me hiking through a scenic mountain trail, wearing sporty outdoor gear.",
+"@me in a swimsuit by a beachside resort, looking out at the ocean.",
+"@me curled up with a good book and a cup of tea in a cozy reading nook.",
+"@me posing in an elegant gown on a staircase, ready for a gala or event.",
+"@me in lingerie by a large window, looking out at the city skyline.",
+"@me at the gym, working on a treadmill with determination in her activewear.",
+"@me enjoying brunch with friends at an outdoor cafe, wearing a chic summer dress.",
+"@me in a glamorous cocktail dress, holding a glass of champagne at a party.",
+"@me cooking a healthy meal in a well-lit modern kitchen, surrounded by fresh ingredients.",
+"@me relaxing in a hammock by the beach, with a tropical drink in hand.",
+"@me standing in a luxurious bathroom in a satin robe, surrounded by beauty products.",
+"@me shopping at a farmers market, holding a basket of fresh produce.",
+"@me walking through an art gallery, wearing a trendy outfit and stylish glasses.",
+"@me standing by a grand piano, dressed elegantly, as if about to perform.",
+"@me lounging in lingerie on a luxurious velvet chaise longue.",
+"@me stretching before a workout in a gym, wearing colorful sports attire.",
+"@me enjoying an afternoon picnic in a park, with a blanket and a basket of snacks.",
+"@me posing in front of a luxury sports car, wearing designer clothes.",
+"@me sitting in a cozy cafe, sipping on a latte with a stylish outfit.",
+"@me trying on different high heels in a modern closet filled with shoes.",
+"@me in a luxury hotel suite, surrounded by shopping bags from a high-end shopping spree.",
+"@me walking barefoot along the beach at sunset, with waves touching her feet.",
+"@me wearing silk lingerie, sitting on a bed with plush pillows and a soft throw.",
+"@me riding a bicycle along a cobblestone street in a picturesque European city.",
+"@me sitting on a rooftop terrace, overlooking the city lights at night.",
+"@me enjoying a spa day, surrounded by soft towels, candles, and luxurious skincare products.",
+"@me doing Pilates in a bright, airy studio with large windows.",
+"@me holding a yoga pose on a mat in the middle of nature, surrounded by trees and greenery.",
+"@me getting ready for a day out, putting on jewelry in front of a mirror.",
+"@me lying on the sand at a tropical beach, wearing a stylish swimsuit and sunhat.",
+"@me walking through a luxury hotel lobby in a glamorous dress and high heels.",
+"@me reading a magazine by the poolside, with a cocktail and a sunhat.",
+"@me jogging through a scenic park in the early morning, wearing sporty attire.",
+"@me enjoying a luxurious breakfast in bed at a five-star hotel.",
+"@me posing in front of a private jet, dressed in an elegant, business-casual outfit.",
+"@me sitting at a makeup station, applying eyeshadow with various beauty products.",
+"@me standing on a yacht in a designer swimsuit, with the ocean behind her.",
+"@me wearing a cozy oversized sweater, drinking hot chocolate by a fireplace.",
+"@me posing in front of a famous monument during a luxury vacation.",
+"@me lounging by the pool at a luxury resort, with palm trees and the ocean in view.",
+"@me sitting at a chic rooftop bar, enjoying a cocktail with a stunning city view.",
+"@me walking through a flower garden in a flowy summer dress, enjoying nature.",
+"@me in lingerie, lying on a large, luxurious bed covered in satin sheets.",
+"@me getting ready for a photo shoot, surrounded by clothes and accessories.",
+"@me standing on a balcony overlooking the ocean at a tropical resort.",
+"@me relaxing with a facial mask and cucumber slices in a serene home spa.",
+"@me sitting in a hot tub, surrounded by candles, with mountains in the background.",
+"@me strolling through the streets of Paris in a chic trench coat and beret.",
+"@me riding a horse along the beach, with waves gently crashing.",
+"@me wearing a bathrobe and fluffy slippers, enjoying a lazy morning at home.",
+"@me dressed in workout gear, preparing for a morning run through the city.",
+"@me enjoying a candlelit dinner at a luxury restaurant, with elegant tableware.",
+"@me lying on a sun lounger by the pool, sipping on a fruity cocktail.",
+"@me in a cozy bedroom, wrapped in a blanket, watching TV on a rainy day.",
+"@me holding a glass of champagne in a private jet, wearing a stylish outfit.",
+"@me strolling through a luxury boutique, browsing designer clothes and accessories.",
+"@me enjoying a sunset on a beach, wearing a flowing summer dress and barefoot in the sand.",
+"@me lounging in a chic living room, sipping coffee and wearing loungewear.",
+"@me in the mountains, dressed in sporty winter gear, enjoying a day of snowboarding.",
+"@me sitting at a piano, practicing a melody in a cozy, well-decorated room.",
+"@me walking along the deck of a luxury yacht, wearing a glamorous swimsuit.",
+"@me preparing for a glamorous event, choosing jewelry in front of a mirror.",
+"@me sunbathing on a yacht, with clear blue water and a luxury backdrop.",
+"@me posing by a vintage car, wearing a stylish retro outfit.",
+"@me enjoying a luxurious high tea at a fancy hotel, surrounded by elegant tableware.",
+"@me relaxing by the fireplace in a cozy winter cabin, wrapped in a blanket.",
+"@me practicing yoga on the beach during sunrise, in athletic wear.",
+"@me walking through a busy city street, holding a coffee cup and wearing trendy clothes.",
+"@me lounging in a rooftop infinity pool, overlooking a breathtaking skyline.",
+"@me dressed in elegant evening wear, standing on a grand staircase.",
+"@me taking a selfie in a luxury dressing room, surrounded by high-end clothes and accessories.",
+"@me sitting in front of a makeup mirror, with beauty tools scattered around.",
+"@me walking through a vineyard during sunset, wearing a flowy dress and sunhat.",
+"@me posing in a luxury apartment, holding a designer handbag and wearing a stylish outfit.",
+"@me standing in front of a luxury car, dressed in an elegant, high-fashion outfit.",
+"@me walking along a tropical beach at dawn, with soft waves lapping the shore.",
+"@me enjoying a relaxing morning in a beautiful garden, surrounded by flowers and greenery.",
+"@me standing in front of a modern skyscraper, wearing a chic business outfit and holding a coffee cup."
+        ];
+        let usedTexts = [];
+
+        function getRandomText() {
+            if (usedTexts.length === texts.length) {
+                usedTexts = []; // Сброс, если все тексты использованы
+            }
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * texts.length);
+            } while (usedTexts.includes(randomIndex));
+            
+            usedTexts.push(randomIndex);
+            document.getElementById("textField").innerText = texts[randomIndex];
+        }
+
+        function copyText() {
+            const text = document.getElementById("textField").innerText;
+            navigator.clipboard.writeText(text);
+        }
+
+        window.onload = getRandomText;
+    </script>
+</head>
+<body>
+    <h1>GenYOU prompts</h1>
+    <p id="textField"></p>
+    <div>
+        <button onclick="getRandomText()"><i class="fas fa-redo"></i></button>
+        <button onclick="copyText()"><i class="fas fa-copy"></i></button>
+    </div>
+</body>
+</html>
